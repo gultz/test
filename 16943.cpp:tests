@@ -1,0 +1,26 @@
+[
+	{
+		"correct_answers":
+		[
+			"3421"
+		],
+		"test": "1234 3456\n"
+	},
+	{
+		"correct_answers":
+		[
+			"-1"
+		],
+		"test": "1000 5\n"
+	},
+	{
+		"correct_answers":
+		[
+			"-1"
+		],
+		"test": "789 123\n"
+	},
+	{
+		"test": ""
+	}
+]

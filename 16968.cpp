@@ -15,6 +15,7 @@ int go(string &s, int index, char last){
     }
 
     return ans;
+    
 }
 
 int main(){
