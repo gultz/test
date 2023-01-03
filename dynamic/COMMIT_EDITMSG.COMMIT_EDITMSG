@@ -1,0 +1,454 @@
+
+git hub test why not 
+# --------------
+# Please enter the commit message for your changes. Everything below
+# this paragraph is ignored, and an empty message aborts the commit.
+# Just close the window to accept your message.
+diff --git a/.DS_Store b/.DS_Store
+index 279381f..5c09f5a 100644
+Binary files a/.DS_Store and b/.DS_Store differ
+diff --git a/dynamic/10844.cpp b/dynamic/10844.cpp
+new file mode 100644
+index 0000000..ab5a627
+--- /dev/null
++++ b/dynamic/10844.cpp
+@@ -0,0 +1,28 @@
++#include <iostream>
++long long mod = 1000000000;
++long long d[101][10];
++using namespace std;
++
++int main(){
++	int n;
++	cin>>n;
++
++	for(int i=1; i<=9; i++){
++		d[1][i] =1;
++	}
++
++	for(int i=2; i<=n; i++){
++		for(int j=0; j<=9; j++){
++			if(j-1>=0) d[i][j] += d[i-1][j-1];
++			if(j+1<=9) d[i][j]+=d[i-1][j+1];
++			d[i][j] %=mod;
++		}
++	}
++	long long ans = 0;
++	for(int i=0; i<=9; i++){
++		ans +=d[n][i];
++	}
++	ans %=mod;
++	cout<<ans<<'\n';
++	return 0;
++}
+diff --git a/dynamic/10844.cpp:tests b/dynamic/10844.cpp:tests
+new file mode 100644
+index 0000000..461bfc1
+--- /dev/null
++++ b/dynamic/10844.cpp:tests
+@@ -0,0 +1,8 @@
++[
++	{
++		"test": "1\n"
++	},
++	{
++		"test": "2\n"
++	}
++]
+diff --git a/dynamic/11052.cpp b/dynamic/11052.cpp
+new file mode 100644
+index 0000000..da7e092
+--- /dev/null
++++ b/dynamic/11052.cpp
+@@ -0,0 +1,25 @@
++#include <iostream>
++#include <vector>
++using namespace std;
++int main(){
++	int n;
++	cin>>n;
++	vector<int> a(n+1);
++	for(int i=1; i<=n; i++){
++		cin>>a[i];
++	}
++	vector<int> d(n+1);
++
++	//vector 기본값이 0이구나 이제야 알앗네~ ㅅㅂ 
++
++	for(int i=1; i<=n; i++){
++		for(int j=1; j<=i; j++){
++			d[i] = max(d[i],d[i-j] + a[j]);
++		}
++	}
++	cout<<d[n]<<'\n';
++	return 0;
++
++	 
++	
++}
+\ No newline at end of file
+diff --git a/dynamic/11052.cpp:tests b/dynamic/11052.cpp:tests
+new file mode 100644
+index 0000000..8c1d15a
+--- /dev/null
++++ b/dynamic/11052.cpp:tests
+@@ -0,0 +1,14 @@
++[
++	{
++		"test": "\n\n\n1\n2\n"
++	},
++	{
++		"test": "4\n1 5 6 7\n"
++	},
++	{
++		"test": "5\n10 9 8 7 6\n"
++	},
++	{
++		"test": "10\n1 1 2 3 5 8 13 21 34 55\n"
++	}
++]
+diff --git a/dynamic/11053.cpp b/dynamic/11053.cpp
+new file mode 100644
+index 0000000..d12db11
+--- /dev/null
++++ b/dynamic/11053.cpp
+@@ -0,0 +1,6 @@
++#include <iostream>
++#include <vector>
++using namespace std;
++
++
++
+diff --git a/dynamic/11726.cpp b/dynamic/11726.cpp
+new file mode 100644
+index 0000000..337bcb1
+--- /dev/null
++++ b/dynamic/11726.cpp
+@@ -0,0 +1,15 @@
++#include <iostream>
++using namespace std;
++int d[1001];
++int main(){
++	d[0]= 1;
++	d[1] =1;
++	int n;
++	cin>>n;
++	for(int i=2; i<=n; i++){
++		d[i] = d[i-1] + d[i-2]*2;
++		d[i] %=10007;
++	}
++	cout<<d[n]<<'\n';
++	return 0;
++}
+\ No newline at end of file
+diff --git a/dynamic/11726.cpp:tests b/dynamic/11726.cpp:tests
+new file mode 100644
+index 0000000..ad2d50c
+--- /dev/null
++++ b/dynamic/11726.cpp:tests
+@@ -0,0 +1,11 @@
++[
++	{
++		"test": "2\n"
++	},
++	{
++		"test": "8\n"
++	},
++	{
++		"test": "12\n"
++	}
++]
+diff --git a/dynamic/1463.cpp b/dynamic/1463.cpp
+new file mode 100644
+index 0000000..f2efd97
+--- /dev/null
++++ b/dynamic/1463.cpp
+@@ -0,0 +1,33 @@
++#include <iostream>
++using namespace std;
++int d[1000001];
++int go(int n){
++	if(n==1){
++		return 0;
++	}
++	if(d[n]>0){
++		return d[n];
++	}
++	d[n] = go(n-1)+1;
++	if(n%2==0){
++		int temp = go(n/2) +1;
++		if(d[n]>temp){
++			d[n] = temp;
++		}
++	}
++
++	if(n%3==0){
++		int temp = go(n/3)+1;
++		if(d[n] > temp){
++			d[n] = temp;
++		}
++	}
++	return d[n];
++}
++
++int main(){
++	int n;
++	cin>>n;
++	cout<<go(n)<<'\n';
++	return 0;
++}
+\ No newline at end of file
+diff --git a/dynamic/1463.cpp:tests b/dynamic/1463.cpp:tests
+new file mode 100644
+index 0000000..904b468
+--- /dev/null
++++ b/dynamic/1463.cpp:tests
+@@ -0,0 +1,8 @@
++[
++	{
++		"test": "2\n4\n"
++	},
++	{
++		"test": "4\n"
++	}
++]
+diff --git a/dynamic/1463_2.CPP b/dynamic/1463_2.CPP
+new file mode 100644
+index 0000000..ca8db00
+--- /dev/null
++++ b/dynamic/1463_2.CPP
+@@ -0,0 +1,19 @@
++#include <iostream>
++using namespace std;
++int d[1000001];
++int main(){
++	int n;
++	cin>>n;
++	d[1]= 0;
++	for(int i=2; i<=n; i++){
++		d[i] = d[i-1]+1;
++		if(i%2==0 && d[i] > d[i/2] +1){
++			d[i] = d[i/2]+1;
++		}
++		if(i%3==0 && d[i] > d[i/3]  +1){
++			d[i] = d[i/3] +1;
++		}
++	}
++	cout<<d[n]<<'\n';
++	return 0;
++}
+\ No newline at end of file
+diff --git a/dynamic/15990.cpp b/dynamic/15990.cpp
+new file mode 100644
+index 0000000..8f5c7f9
+--- /dev/null
++++ b/dynamic/15990.cpp
+@@ -0,0 +1,41 @@
++#include <iostream>
++using namespace std;
++long d[1000001][4];
++const long long mod = 1000000009LL;
++const long limit = 100000L;
++int main(){
++	for(int i=1; i<=limit; i++){
++		if(i-1>=0){
++			d[i][1] = d[i-1][2] + d[i-1][3];
++			if(i==1){
++				d[i][1] = 1;
++			}
++		}
++		if(i-2>=0){
++			d[i][2] = d[i-2][1] + d[i-2][3];
++			if(i==2){
++				d[i][2] = 1;
++			}
++		}
++		if(i-3>=0){
++			d[i][3] = d[i-3][1] + d[i-3][2];
++			if(i==3){
++				d[i][3]=1;
++			}
++		}
++
++		d[i][1] %=mod;
++		d[i][2] %=mod;
++		d[i][3] %=mod;
++	}
++
++	int t;
++	cin>>t;
++	while(t--){
++		int n;
++		cin>>n;
++		cout<<(d[n][1]+d[n][2]+d[n][3])%mod<<'\n';
++	}
++	return 0;
++
++}
+\ No newline at end of file
+diff --git a/dynamic/15990.cpp:tests b/dynamic/15990.cpp:tests
+new file mode 100644
+index 0000000..5bbe38f
+--- /dev/null
++++ b/dynamic/15990.cpp:tests
+@@ -0,0 +1,5 @@
++[
++	{
++		"test": "3\n4\n7\n10\n"
++	}
++]
+diff --git a/dynamic/16194.cpp b/dynamic/16194.cpp
+new file mode 100644
+index 0000000..04e484f
+--- /dev/null
++++ b/dynamic/16194.cpp
+@@ -0,0 +1,22 @@
++#include <iostream>
++#include <vector>
++using namespace std;
++int main(){
++	int n;
++	cin>>n;
++	vector<int> a(n+1);
++	for(int i=1; i<=n; i++){
++		cin>>a[i];
++	}
++	vector<int> d(n+1,-1);
++	d[0] = 0;
++	for(int i=1; i<=n; i++){
++		for(int j=1; j<=i; j++){
++			if(d[i]==-1 || d[i]> d[i-j]+a[j]){
++				d[i] = d[i-j] +a[j];
++			}
++		}
++	}
++	cout<<d[n]<<'\n';
++	return 0;
++}
+\ No newline at end of file
+diff --git "a/dynamic/16194.\354\262\264\343\205\224" "b/dynamic/16194.\354\262\264\343\205\224"
+new file mode 100644
+index 0000000..e69de29
+diff --git a/dynamic/2193.cpp b/dynamic/2193.cpp
+new file mode 100644
+index 0000000..735a880
+--- /dev/null
++++ b/dynamic/2193.cpp
+@@ -0,0 +1,15 @@
++#include <iostream>
++long long d[91];
++
++using namespace std;
++int main(){
++	int n;
++	cin>>n;
++	d[1]= 1;
++	d[2]=1;
++	for(int i=3; i<=n; i++){
++		d[i] = d[i-1]+d[i-2];
++	}
++	cout<<d[n]<<'\n';
++	return 0;
++}
+\ No newline at end of file
+diff --git a/dynamic/2193.cpp:tests b/dynamic/2193.cpp:tests
+new file mode 100644
+index 0000000..1a284fd
+--- /dev/null
++++ b/dynamic/2193.cpp:tests
+@@ -0,0 +1,8 @@
++[
++	{
++		"test": "2\n"
++	},
++	{
++		"test": "3\n"
++	}
++]
+diff --git a/dynamic/9095.cpp b/dynamic/9095.cpp
+new file mode 100644
+index 0000000..f03a05a
+--- /dev/null
++++ b/dynamic/9095.cpp
+@@ -0,0 +1,25 @@
++#include <iostream>
++using namespace std;
++int d[11];
++int main(){
++	d[0] =1;
++	for(int i=1; i<=10; i++){
++		if(i-1>=0){
++			d[i] +=d[i-1];
++		}
++		if(i-2>=0){
++			d[i]+=d[i-2];
++		}
++		if(i-3>=0){
++			d[i] +=d[i-3];
++		}
++	}
++	int t;
++	cin>>t;
++	while(t--){
++		int n;
++		cin>>n;
++		cout<<d[n]<<'\n';
++	}
++	return 0;
++}
+\ No newline at end of file
+diff --git a/dynamic/9095.cpp:tests b/dynamic/9095.cpp:tests
+new file mode 100644
+index 0000000..5bbe38f
+--- /dev/null
++++ b/dynamic/9095.cpp:tests
+@@ -0,0 +1,5 @@
++[
++	{
++		"test": "3\n4\n7\n10\n"
++	}
++]
+diff --git a/dynamic/main b/dynamic/main
+new file mode 100755
+index 0000000..8a9806d
+Binary files /dev/null and b/dynamic/main differ
+diff --git a/dynamic/main.dSYM/Contents/Info.plist b/dynamic/main.dSYM/Contents/Info.plist
+new file mode 100644
+index 0000000..fe7fecd
+--- /dev/null
++++ b/dynamic/main.dSYM/Contents/Info.plist
+@@ -0,0 +1,20 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
++<plist version="1.0">
++	<dict>
++		<key>CFBundleDevelopmentRegion</key>
++		<string>English</string>
++		<key>CFBundleIdentifier</key>
++		<string>com.apple.xcode.dsym.main</string>
++		<key>CFBundleInfoDictionaryVersion</key>
++		<string>6.0</string>
++		<key>CFBundlePackageType</key>
++		<string>dSYM</string>
++		<key>CFBundleSignature</key>
++		<string>????</string>
++		<key>CFBundleShortVersionString</key>
++		<string>1.0</string>
++		<key>CFBundleVersion</key>
++		<string>1</string>
++	</dict>
++</plist>
+diff --git a/dynamic/main.dSYM/Contents/Resources/DWARF/main b/dynamic/main.dSYM/Contents/Resources/DWARF/main
+new file mode 100644
+index 0000000..cb70f18
+Binary files /dev/null and b/dynamic/main.dSYM/Contents/Resources/DWARF/main differ
+diff --git a/dynamic/output.txt b/dynamic/output.txt
+new file mode 100644
+index 0000000..0cfbf08
+--- /dev/null
++++ b/dynamic/output.txt
+@@ -0,0 +1 @@
++2
+diff --git a/dynamic/test.json b/dynamic/test.json
+new file mode 100644
+index 0000000..e69de29
